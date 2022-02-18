@@ -7,14 +7,33 @@ use App\Models\Book;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Wishlist;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use Request;
+use DB;
 
 class BookController extends Controller
 {
     //
     function index()
     {
-        $books=Book::paginate(3);
+      if(Request::get('sort')=='price_asc.'){
+         $books=Book::all()
+         ->sortBy('price');
+        //  dd($books);
+      }else if(Request::get('sort')=='price_desc.'){
+        $books=Book::all()
+         ->sortByDesc('price');
+      }else if(Request::get('sort')=='newest.'){
+        $books=Book::all()
+         ->sortByDesc('created_at');
+      }else if(Request::get('sort')=='oldest'){
+        $books=Book::all()
+         ->sortBy('created_at');
+      } 
+      else{
+        $books=Book::all();
+      }
+     
         return view('books',compact('books'));
     }
     function detail($id){

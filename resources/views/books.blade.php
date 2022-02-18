@@ -3,9 +3,16 @@
 @section('content')
 
 <div class="container">
+<div class="col-sm-8">
+<span class="text-light font-weight-bold font-sort">Sort by :</span>
+<a class="font-sort" href="{{ URL::current() }}">All</a>
+<a class="font-sort" href="{{ URL::current()."?sort=price_asc" }}.">Price-low to high</a>
+<a class="font-sort" href="{{ URL::current()."?sort=price_desc" }}.">Price-high to low</a>
+<a class="font-sort" href="{{ URL::current()."?sort=newest" }}.">Newest</a>
+<a class="font-sort" href="{{ URL::current()."?sort=oldest" }}">Oldest</a>
+</div>
     <div class="row justify-content-around">
 @foreach($books as $item)
-
 <div class="card m-2 col-sm-8 bg-dark text-light" style="width: 25rem;">
 <a href="detail/{{$item->id}}">
   <img src="{{$item->gallery}}" class="card-img-top mt-2 img-thumbnail" style="height:30rem width:30rem" alt="...">
@@ -30,12 +37,8 @@
     </form>
   </div>
 </div>
-
 @endforeach
 </div>
-</div>
-<div class="row align-self-center">
-<span >{{ $books->links() }}</span>
 </div>
 
 @endsection

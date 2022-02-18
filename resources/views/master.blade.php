@@ -39,5 +39,13 @@ crossorigin="anonymous">
     .detail-img{
         height:25rem;
     }
+    .font-sort{
+        margin:0 10px;
+        font-size:15px;
+        color:white;
+    }
+    .font-sort:hover{
+        color:yellow;
+    }
 </style>
 </html>
