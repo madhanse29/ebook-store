@@ -25,4 +25,7 @@
 @endforeach
 </div>
 </div>
+<div class="row align-self-center">
+<span >{{ $orders->links() }}</span>
+</div>
 @endsection 

@@ -15,6 +15,7 @@
     <input type="password" name="password" minlength="6" class="form-control" id="exampleInputPassword1">
   </div>
   <button type="submit" class="btn btn-primary ">Login</button>
+  <div id="emailHelp" class="form-text text-white"><a class="text-white" href="forgot">Forgot password ?</a></div>
 </form>
     </div>
 </div>

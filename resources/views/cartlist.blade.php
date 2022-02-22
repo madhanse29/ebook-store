@@ -32,4 +32,7 @@
 <div class="row align-self-center">
 <a class="btn btn-success " href="/ordernow"> Order now</a>
 </div>
+<div class="row align-self-center mt-2">
+<span >{{ $cartitems->links() }}</span>
+</div>
 @endsection 

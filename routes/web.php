@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\SortController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -18,12 +19,22 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('master');
 });
+Route::get('/adsh', function () {
+    return view('admin.adminmaster');
+});
+
 Route::get('/register', function () {
     return view('register');
+});
+Route::get('/test', function () {
+    return view('test');
 });
 
 Route::get('/login', function () {
     return view('login');
+});
+Route::get('/forgot', function () {
+    return view('email');
 });
 Route::get('/addbooks', function () {
     return view('addbooks');
@@ -33,12 +44,17 @@ Route::get('/logout', function () {
     return redirect('/login');
 });
 
-Route::post('/login',[UserController::class,'login']);
+Route::post('/login',[UserController::class,'login'])->name('admin-login');
+Route::get('/dashboard',[UserController::class,'dashboard']);
 Route::post('/register',[UserController::class,'register']);
+Route::get('/profile',[UserController::class,'profile']);
+Route::post('/profile',[UserController::class,'profilePic']);
+Route::put('/edituser',[UserController::class,'editUser']);
+Route::get("/",[SortController::class,'index']);
+Route::post("/forgot",[UserController::class,'password']);
 
 Route::controller(BookController::class)->group(
     function(){
-      Route::get("/",'index');
       Route::get("/detail/{id}", 'detail');
       Route::get("/search",'search');
       Route::post("/add_to_wishlist",'addToWishlist');

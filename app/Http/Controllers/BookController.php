@@ -1,41 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
+// use Request;
 use Session;
 use App\Models\Book;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Wishlist;
-// use Illuminate\Http\Request;
-use Request;
+use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Request;
 use DB;
 
 class BookController extends Controller
 {
     //
-    function index()
-    {
-      if(Request::get('sort')=='price_asc.'){
-         $books=Book::all()
-         ->sortBy('price');
-        //  dd($books);
-      }else if(Request::get('sort')=='price_desc.'){
-        $books=Book::all()
-         ->sortByDesc('price');
-      }else if(Request::get('sort')=='newest.'){
-        $books=Book::all()
-         ->sortByDesc('created_at');
-      }else if(Request::get('sort')=='oldest'){
-        $books=Book::all()
-         ->sortBy('created_at');
-      } 
-      else{
-        $books=Book::all();
-      }
-     
-        return view('books',compact('books'));
-    }
+    
     function detail($id){
         $data = Book::find($id);
         return view('detail',compact('data'));
@@ -82,7 +61,7 @@ class BookController extends Controller
         $userId=Session::get('user')['id'];
         $cartitems = Cart::where('user_id',$userId)
         ->select('carts.*','carts.id as cart_id')
-        ->get();
+        ->paginate(3);
       
         return view('cartlist',compact('cartitems'));
     }
@@ -92,6 +71,7 @@ class BookController extends Controller
         $wishlistitems = Wishlist::where('user_id',$userId)
         ->select('wishlists.*','wishlists.id as wishlist_id')
         ->paginate(4);
+        // dd($wishlistitems);
         return view('wishlist',compact('wishlistitems'));
     }
     function removeCart($id)
@@ -145,7 +125,9 @@ class BookController extends Controller
     function myOrders(){
         $userId=Session::get('user')['id'];
         $orders = Order::where('user_id',$userId)
-         ->get();
+         ->paginate(3);
+        //  $orders=Order::paginate(4);
+         
         //  dd($orders);
          
         return view('myorders',['orders'=>$orders]);

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('admin.dashboard')
 @section('content')
 
 <div class="container custom-login text-light mb-3" style="height:1000px;">

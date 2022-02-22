@@ -1,16 +1,26 @@
 
 @extends('master')
 @section('content')
-
-<div class="container">
-<div class="col-sm-8">
-<span class="text-light font-weight-bold font-sort">Sort by :</span>
-<a class="font-sort" href="{{ URL::current() }}">All</a>
-<a class="font-sort" href="{{ URL::current()."?sort=price_asc" }}.">Price-low to high</a>
-<a class="font-sort" href="{{ URL::current()."?sort=price_desc" }}.">Price-high to low</a>
-<a class="font-sort" href="{{ URL::current()."?sort=newest" }}.">Newest</a>
-<a class="font-sort" href="{{ URL::current()."?sort=oldest" }}">Oldest</a>
+<div class="container sorting">
+<div class="col-sm-4 mt-1 align-self-end">
+<form class="d-flex" action="/search">
+        <input class="form-control me-2 search-box" name="query" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-dark text-light" type="submit">Search</button>
+      </form></div>
+      <div class="dropdown mt-1 " style="position: absolute; left: 80vw;">
+  <a class="btn btn-outline-dark text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+   Sort by 
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="font-sort" href="{{ URL::current() }}">All</a></li>
+    <li><a class="font-sort" href="{{ URL::current()."?sort=price_asc" }}.">Price-low to high</a></li>
+    <li><a class="font-sort" href="{{ URL::current()."?sort=price_desc" }}.">Price-high to low</a></li>
+ <li><a class="font-sort" href="{{ URL::current()."?sort=newest" }}.">Newest</a></li> 
+ <li><a class="font-sort" href="{{ URL::current()."?sort=oldest" }}">Oldest</a></li>
+</ul>
 </div>
+</div>
+<div class="container">
     <div class="row justify-content-around">
 @foreach($books as $item)
 <div class="card m-2 col-sm-8 bg-dark text-light" style="width: 25rem;">

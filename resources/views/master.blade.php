@@ -42,10 +42,22 @@ crossorigin="anonymous">
     .font-sort{
         margin:0 10px;
         font-size:15px;
-        color:white;
     }
     .font-sort:hover{
-        color:yellow;
+        color:black;
     }
+    .search-box{
+        width:50rem;
+    }
+ .custom-card{
+    align-items: center;
+    padding:50px;
+ }
+ .card-img{
+    border-radius: 50%; height: 80px; width: 80px;
+ }
+.sorting{
+    display:flex;
+}
 </style>
 </html>

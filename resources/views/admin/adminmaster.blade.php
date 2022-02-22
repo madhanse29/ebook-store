@@ -1,0 +1,8 @@
+@extends('admin.dashboard')
+
+@section('content')
+
+
+<h1 class="text-dark" style="margin-left:15%">Lorem ipsum dolor sit amet consectetur adipisicing elit. At odit cumque, corporis, voluptas totam pariatur cum impedit iure quaerat modi id ullam perferendis distinctio ut ducimus laudantium eveniet asperiores, voluptatibus dolorem illum laboriosam. Omnis exercitationem incidunt reprehenderit? Facere non iste, illo fugiat inventore natus corrupti voluptatum nisi, vel in veniam. Hic dolorem qui modi voluptates numquam necessitatibus aliquam veniam tenetur libero est nemo itaque aspernatur consectetur odit, excepturi vero cum corporis sit ipsum voluptas facilis. Laboriosam debitis inventore molestiae voluptatum quas exercitationem facere delectus, hic eum maxime quisquam, vero numquam quia. Nobis quo nihil vel perferendis animi. Reiciendis saepe commodi nesciunt inventore doloremque cupiditate quas sequi corrupti recusandae tenetur libero error veniam possimus, vel adipisci cum. Facilis nobis cum veniam doloremque deleniti, officiis sequi cupiditate nesciunt ad error! Ratione quibusdam sit odit, vitae earum eos omnis, impedit in dolorem molestias error vel iusto. Maxime nostrum deserunt laborum perspiciatis natus non delectus unde, quae ad hic, ex neque assumenda dicta? Amet ullam adipisci, earum libero reprehenderit sequi doloremque ad laboriosam, atque quaerat consectetur impedit repellendus quas iste! Inventore voluptatibus modi rerum ad sint odio omnis, maxime possimus nihil alias labore provident illum. Ex libero fuga culpa sit reiciendis, a velit neque?</h1>
+
+@endsection
