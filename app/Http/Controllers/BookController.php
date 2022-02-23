@@ -145,6 +145,39 @@ class BookController extends Controller
                'summary'=>$req->summary,
            ]);
            return redirect('/');
-       }
-}
+        }
+
+     function editBooks(){
+        $books=Book::all();
+        return view('admin.editbooks',compact('books'));
+    }
+
+     function editPage($id){
+         $data = Book::find($id);
+         return view('admin.editpage',compact('data'));
+     }
+     function edited(Request $req){
+        $id = $req->input('id');
+        
+         DB::table('books')->where('id',$id)->update([
+            'name'=> $req->name,
+            'author'=>$req->author,
+            'price'=>$req->price,
+            'gallery'=>$req->gallery,
+            'category'=>$req->category,
+            'description'=>$req->description,
+            'summary'=>$req->summary,
+        ]);
+        $books=Book::all();
+         return view('admin.editbooks',compact('books'));
+    
+    }
+    function deleteData ($id){
+        Book::destroy($id);
+    
+        $books=Book::all();
+        return view('admin.editbooks',compact('books'));
+    
+    }
+    }
  

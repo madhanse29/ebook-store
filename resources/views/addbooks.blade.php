@@ -1,7 +1,7 @@
 @extends('admin.dashboard')
 @section('content')
 
-<div class="container custom-login text-light mb-3" style="height:1000px;">
+<div class="container custom-login text-light mb-3" style="position:relative; left: 75px;">
 <div class="row">
 <h2 class="text-center">Add books</h2>
     <div class="col-sm-4 mx-auto">

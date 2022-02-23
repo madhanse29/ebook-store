@@ -19,9 +19,6 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('master');
 });
-Route::get('/adsh', function () {
-    return view('admin.adminmaster');
-});
 
 Route::get('/register', function () {
     return view('register');
@@ -43,6 +40,7 @@ Route::get('/logout', function () {
     Session::forget('user');
     return redirect('/login');
 });
+
 
 Route::post('/login',[UserController::class,'login'])->name('admin-login');
 Route::get('/dashboard',[UserController::class,'dashboard']);
@@ -68,5 +66,9 @@ Route::controller(BookController::class)->group(
       Route::post("/orderplace",'orderPlace');
       Route::get("/orderlist",'myOrders');
       Route::post("/added",'added');
+      Route::get("/editbooks",'editBooks');
+      Route::get("/editpage/{id}",'editPage')->name('edit-book');
+      Route::post("/edited",'edited')->name('edit-book');
+      Route::get('/deletepage/{id}', 'deleteData');
     }
 );
