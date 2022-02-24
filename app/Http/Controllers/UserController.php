@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Sentinel;
+use Reminder;
+use Mail;
 
 class UserController extends Controller
 {
@@ -99,7 +102,7 @@ class UserController extends Controller
     function password(Request $request)
     {
      $user = User::whereEmail($request->email)->first();
-     if(count($user) == 0){
+     if($user == null){
          return redirect()->back()->with(['error'=>'Email does not exits']);
      }
      $user = Sentinel::findById($user->id);
@@ -109,11 +112,15 @@ class UserController extends Controller
       return redirect()->back()->with(['sucess'=>'Reset  code sent to your email']);
             }
 
-    // function sendEmail($user,$code){
-    //     Mail::send(
-    //         'email.forgot',
-    //         []
-    //     )
-    // }
+    function sendEmail($user,$code){
+        Mail::send(
+            'email.forgot',
+            ['user'=>$user , 'code'=>$code],
+            function($message) use($user){
+                $message->to($user->email);
+                $message->subject("$user->name,reset your passord");
+            }
+        );
+    }
 }
 
