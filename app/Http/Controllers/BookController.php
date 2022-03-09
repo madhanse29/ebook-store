@@ -144,7 +144,13 @@ class BookController extends Controller
                'description'=>$req->description,
                'summary'=>$req->summary,
            ]);
-           return redirect('/');
+            return response()->json(
+                [
+                    'status'=>200,
+                    'message'=>'book added succesfully'
+                ]
+                
+            );
         }
 
      function editBooks(){
@@ -175,8 +181,8 @@ class BookController extends Controller
     function deleteData ($id){
         Book::destroy($id);
     
-        $books=Book::all();
-        return view('admin.editbooks',compact('books'));
+
+        return redirect('dashboard');
     
     }
     }

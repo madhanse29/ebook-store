@@ -1,55 +1,35 @@
-@if(Session::has('user'))
+@extends('admin.master')
+@section('content')
 
-<html>
-<title>admin</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
-crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<body>
-
-<div class="w3-sidebar w3-bar-block w3-collapse w3-card bg-dark text-light" style="width:15%" id="mySidebar">
-  <button class="w3-bar-item w3-button w3-hide-large"
-  onclick="w3_close()">Close &times;</button>
-  <div class="" style="margin-top: 8rem;">
-  <a href="/addbooks" class="w3-bar-item btn-primary">Add Books</a><br>
-  <a href="/editbooks" class="w3-bar-item btn-primary">Edit Books</a><br>
+<div class="container" >
+    <div class="row justify-content-around" style="margin-left:15%">
+    <div id="message"></div>
+@foreach($books as $item)
+<div class="card m-2 col-sm-8 bg-dark text-light" style="width: 25rem;">
+<a href="detail/{{$item->id}}">
+  <img src="{{$item->gallery}}" class="card-img-top mt-2 img-thumbnail" style="height:30rem width:30rem" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{$item->name}}</h5>
+    </a>
+    <p class="card-text">{{$item->description}}</p>
+  </div>
+  <ul class="list-group list-group-flush bg-dark">
+    <li class="list-group-item list-group-item-dark">Author: {{$item->author}}</li>
+    <li class="list-group-item list-group-item-dark">Category: {{$item->category}}</li>
+    <li class="list-group-item list-group-item-dark">Price: Rs.{{$item->price}}</li>
+  </ul>
+  <div class="card-body align-self-center">
+    <a href="/editpage/{{$item->id}}" class="card-link btn btn-info"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+</svg> Edit</a>
+    <a href="/deletepage/{{$item->id}}" class="card-link btn btn-info"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+</svg> Delete</a>
+    <!-- <button class="card-link btn btn-warning">To cart</button> -->
   </div>
 </div>
-
-
-@include('admin.headerad')
-<div class="container mt-5 w3-container">
-@yield('content')
-
-<!-- <h1>admin</h1> -->
+@endforeach
 </div>
-   
 </div>
 
-<script>
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-}
-
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-}
-</script>
-</body>
-<style>
-    body{
-        background: rgb(87,238,40);
-     background: linear-gradient(90deg, rgba(87,238,40,1) 0%, rgba(74,69,158,1) 0%, rgba(35,140,180,1) 100%, rgba(0,212,255,1) 100%);
-    }
-    a{
-text-decoration:none;
-    }
-</style>
-</html>
-@else
-please login
-@endif
+@endsection

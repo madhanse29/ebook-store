@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use Session;
+use Mail;
 use Image;
+use Session;
+use Reminder;
+use Sentinel;
+use App\Models\Book;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use Sentinel;
-use Reminder;
-use Mail;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -48,7 +49,8 @@ class UserController extends Controller
     }
     }
     function dashboard(){
-        return view ('admin.dashboard');
+        $books=Book::all();
+        return view('admin.dashboard',compact('books'));
     }
    function register(Request $request){
     //    return $req->input();
