@@ -44,6 +44,7 @@ Route::get('/logout', function () {
 
 Route::post('/login',[UserController::class,'login'])->name('admin-login');
 Route::get('/dashboard',[UserController::class,'dashboard']);
+Route::get('/fetchbooks',[UserController::class,'fetchbooks']);
 Route::post('/register',[UserController::class,'register']);
 Route::get('/profile',[UserController::class,'profile']);
 Route::post('/profile',[UserController::class,'profilePic']);
@@ -67,8 +68,8 @@ Route::controller(BookController::class)->group(
       Route::get("/orderlist",'myOrders');
       Route::post("/added",'added');
       Route::get("/editbooks",'editBooks');
-      Route::get("/editpage/{id}",'editPage')->name('edit-book');
-      Route::post("/edited",'edited')->name('edit-book');
-      Route::get('/deletepage/{id}', 'deleteData');
+      Route::get("/editpage/{id}",'editPage');
+      Route::put("/edited",'edited');
+      Route::delete('/deletepage/{id}', 'deleteData');
     }
 );

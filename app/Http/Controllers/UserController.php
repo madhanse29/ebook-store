@@ -49,9 +49,16 @@ class UserController extends Controller
     }
     }
     function dashboard(){
-        $books=Book::all();
-        return view('admin.dashboard',compact('books'));
-    }
+ 
+return view('admin.dashboard');  }
+
+function fetchbooks(){
+    $books=Book::all();
+    // return view('admin.dashboard',compact('books'));
+return response()->json([
+'books'=>$books,
+]);
+}
    function register(Request $request){
     //    return $req->input();
        $user = User::create([

@@ -20,12 +20,22 @@
 </ul>
 </div>
 </div>
-<div class="container">
+<div class="center container">
+@foreach($books as $item)
+<div class="dd" style="margin-right:10px;;margin-top:10px;margin-bottom:10px; padding:5px;">
+    <!-- <img src="" style="width: 50px;px;height: 50px;"> -->
+    <a href="detail/{{$item->id}}">
+    <img src="{{$item->gallery}}" class="img-thumbnail zoom"style="width: 272px;
+    height: 361px;background-color:black; border-color:black;"></a>
+  </div>
+  @endforeach
+</div>
+<div class="container mt-1">
     <div class="row justify-content-around">
 @foreach($books as $item)
 <div class="card m-2 col-sm-8 bg-dark text-light" style="width: 25rem;">
 <a href="detail/{{$item->id}}">
-  <img src="{{$item->gallery}}" class="card-img-top mt-2 img-thumbnail" style="height:30rem width:30rem" alt="...">
+  <img src="{{$item->gallery}}" class="card-img-top mt-2 img-thumbnail" style="height:30rem width:30rem " alt="...">
   <div class="card-body">
     <h5 class="card-title">{{$item->name}}</h5>
     </a>
@@ -48,7 +58,51 @@
   </div>
 </div>
 @endforeach
+
+<div class="lazy">
+@foreach($books as $item)
+<div>
+    <!-- <img src="" style="width: 50px;px;height: 50px;"> -->
+    <img data-lazy="{{$item->gallery}}" class="img-fluid"style=";">
+  </div>
+  @endforeach
+</div>
+
 </div>
 </div>
 
+@endsection
+@section('script')
+<script>
+  $(document).ready(function () {
+    $('.center').slick({
+  centerMode: true,
+  centerPadding: '60px',
+  slidesToShow: 4,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+  });
+
+</script>
 @endsection

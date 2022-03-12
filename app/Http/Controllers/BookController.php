@@ -160,7 +160,11 @@ class BookController extends Controller
 
      function editPage($id){
          $data = Book::find($id);
-         return view('admin.editpage',compact('data'));
+        //  return view('admin.editpage',compact('data'));
+        return response()->json([
+            'status'=>200,
+            'data'=>$data,
+        ]);
      }
      function edited(Request $req){
         $id = $req->input('id');
@@ -174,15 +178,23 @@ class BookController extends Controller
             'description'=>$req->description,
             'summary'=>$req->summary,
         ]);
+        // $books=Book::all();
+        //  return view('admin.editbooks',compact('books'));
         $books=Book::all();
-         return view('admin.editbooks',compact('books'));
-    
+        return response()->json([
+            'status'=>200,
+            'message'=>'book update succesfully'
+        ]);
     }
     function deleteData ($id){
         Book::destroy($id);
     
 
-        return redirect('dashboard');
+        // return redirect('dashboard');
+        return response()->json([
+            'status'=>200,
+            'message'=>'Book deleted successfully'
+        ]);
     
     }
     }

@@ -3,7 +3,6 @@
   onclick="w3_close()">Close &times;</button>
   <div class="" style="margin-top: 8rem;">
   <a type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal1" class="w3-bar-item btn-primary">Add Books</a><br>
-  <a href="/editbooks" class="w3-bar-item btn-primary">Edit Books</a><br>
   </div>
 </div>
 
